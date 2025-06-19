@@ -1,7 +1,7 @@
 from constants import *
 import pygame
 from typing import Tuple
-
+import math
 from player import Player
 
 def main() -> None:
@@ -10,13 +10,14 @@ def main() -> None:
     clock: pygame.time.Clock = pygame.time.Clock()
     dt: float = 0
 
-    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    player = Player(math.ceil(SCREEN_WIDTH / 2), math.ceil(SCREEN_HEIGHT / 2))
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
+        player.update(dt)
         player.draw(screen)
         pygame.display.flip()
         dt = clock.tick(60)/1017
