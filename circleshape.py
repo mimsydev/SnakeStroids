@@ -1,4 +1,5 @@
 import pygame
+from typing import Self
 
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
@@ -13,10 +14,18 @@ class CircleShape(pygame.sprite.Sprite):
         self.velocity = pygame.Vector2(0,0)
         self.radius = radius
 
-    def draw(self, screen: pygame.Surface):
+    def is_coliding(self, colidingShape: Self) -> bool:
+        distance = self.position.distance_to(colidingShape.position)
+        return distance < self.radius + colidingShape.radius
+
+    def draw(self, screen: pygame.Surface) -> None:
         # subclasses must override
         pass
 
-    def update(self, dt: float):
+    def update(self, dt: float) -> None:
         # subclass must override
         pass
+
+
+
+

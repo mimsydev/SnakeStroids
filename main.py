@@ -1,6 +1,7 @@
 import pygame
 import math
 import asteroidfield
+import time
 from constants import *
 from typing import Tuple
 from player import Player
@@ -29,6 +30,11 @@ def main() -> None:
                 return
         screen.fill("black")
         updatable.update(dt)
+        for sprite in asteroids:
+            if sprite.is_coliding(player):
+                print("GAME OVER!!!!")
+                time.sleep(1)
+                return
         for sprite in drawable:
             sprite.draw(screen)
         pygame.display.flip()
