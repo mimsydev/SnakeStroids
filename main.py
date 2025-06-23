@@ -38,13 +38,13 @@ def main() -> None:
             for shot in shots:
                 if asteroid.is_coliding(shot):
                     shot.kill()
-                    asteroid.kill()
+                    asteroid.split()
             if asteroid.is_coliding(player):
                 print("GAME OVER!!!!")
                 time.sleep(1)
                 return
-        for sprite in drawable:
-            sprite.draw(screen)
+        for asteroid in drawable:
+            asteroid.draw(screen)
         pygame.display.flip()
         dt = clock.tick(60)/1017
 
